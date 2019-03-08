@@ -75,47 +75,5 @@ public class WordSearch {
         System.out.println(firstLetters);
     }
 
-    public void findWords(){
-        int count = 0;
-        while (count < firstLetters.size()){
-            for (int i = 0; i < 15; i++){
-                for (int j = 0; j < 15; j++){
-                    if (board[i][j] == firstLetters.get(count)){
-                        lookUp(i,j,wordList.get(count));
-                        lookDown(i,j,wordList.get(count));
-                        lookRight(i,j,wordList.get(count));
-                        lookLeft(i,j,wordList.get(count));
-                        lookDiagUp(i,j,wordList.get(count));
-                        lookDiagDown(i,j,wordList.get(count));
-                    }
-                }
-            }
-        }
-    }
 
-    public void lookUp(int r, int c, String word){
-        for (int i = r; i > 0; i--){
-            
-        }
-    }
-
-    public void lookDown(int r, int c, String word){
-
-    }
-
-    public void lookRight(int r, int c, String word){
-
-    }
-
-    public void lookLeft(int r, int c, String word){
-
-    }
-
-    public void lookDiagUp(int r, int c, String word){
-
-    }
-
-    public void lookDiagDown(int r, int c, String word){
-
-    }
 }
