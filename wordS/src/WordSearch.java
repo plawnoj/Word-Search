@@ -73,15 +73,11 @@ public class WordSearch {
 
 
     public void findWords(){
-        for (String word : wordList){
+      for (String word : wordList){
         char firstLetter = word.charAt(0);
         for (int i = 0; i < 15; i++){
             for (int j = 0; j < 15; j++){
                 if (board[i][j] == firstLetter){
-//              String x = Integer.toString(i);
-//              String y = Integer.toString(j);
-//              System.out.println(word + " Letter Found: " + x + ", " + y);
-//              continue;
                     if (checkUp(i, j, word.length())){
                         lookUp(i, j, word.length(), word);
                     }
@@ -93,10 +89,10 @@ public class WordSearch {
                     }
                     if (checkLeft(i, j, word.length())){
                         lookLeft(i, j, word.length(), word);
-                    }
+                  }
                 }
             }
-        }
+          }
         }
     }
     //checking up
@@ -232,5 +228,5 @@ public class WordSearch {
             System.out.println(w + "    " + a.toString());
         }
     }
-    
+
 }
