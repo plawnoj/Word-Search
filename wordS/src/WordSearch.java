@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ public class WordSearch {
 
     public void init(){
         try {
-            File f = new File("C:\\Users\\jwalp\\IdeaProjects\\untitled6\\src\\WORDSEARCH.txt");
+            File f = new File("C:\\Users\\jwalp\\workspace\\wordS\\src\\WORDSEARCH.txt");
             Scanner fileRead = new Scanner(f);
             int count = 0;
             while (count <= 15){
@@ -72,8 +73,7 @@ public class WordSearch {
 
 
     public void findWords(){
-        String word = wordList.get(0);
-        //for (String word : wordList){
+        for (String word : wordList){
         char firstLetter = word.charAt(0);
         for (int i = 0; i < 15; i++){
             for (int j = 0; j < 15; j++){
@@ -85,10 +85,19 @@ public class WordSearch {
                     if (checkUp(i, j, word.length())){
                         lookUp(i, j, word.length(), word);
                     }
+                    if (checkRight(i, j, word.length())){
+                        lookRight(i, j, word.length(), word);
+                    }
+                    if (checkDown(i, j, word.length())){
+                        lookDown(i, j, word.length(), word);
+                    }
+                    if (checkLeft(i, j, word.length())){
+                        lookLeft(i, j, word.length(), word);
+                    }
                 }
             }
         }
-        //}
+        }
     }
     //checking up
     public boolean checkUp(int x, int y, int len){
@@ -103,10 +112,57 @@ public class WordSearch {
         return possible;
     }
 
+    public boolean checkRight(int x, int y, int len){
+      boolean possible = false;
+      if (y + len < 15){
+        possible = true;
+      }
+      else {
+        possible = false;
+      }
+      return possible;
+    }
+
+    public boolean checkDown(int x, int y, int len){
+      boolean possible = false;
+      if (x + len < 15){
+        possible = true;
+      }
+      else {
+        possible = false;
+      }
+      return possible;
+    }
+
+    public boolean checkLeft(int x, int y, int len){
+      boolean possible = false;
+      if (y - len >= 0){
+        possible = true;
+      }
+      else {
+        possible = false;
+      }
+      return possible;
+    }
+
+    public boolean checkRightDiagonal(int x, int y, int len){
+        /*
+        *To be implemented later
+         */
+        return true;
+    }
+
+    public boolean checkLeftDiagonal(int x, int y, int len){
+        /*
+         *To be implemented later
+         */
+        return true;
+    }
+
+
     public void lookUp(int x, int y, int len, String w){
         ArrayList<Character> temp = new ArrayList<>();
         String wordTemp = "";
-        w = "ALBUSLA";
         for (int i = x; i >= 0; i--){
             temp.add(board[i][y]);
         }
@@ -114,14 +170,67 @@ public class WordSearch {
         for (int i = 0; i < len; i++){
             wordTemp += temp.get(i);
         }
-        System.out.println(temp);
-        System.out.println(wordTemp);
+//        System.out.println(temp);
+//        System.out.println(wordTemp);
 
         if (wordTemp.equals(w)){
             Coord a = new Coord(x, y, x-len + 1, y);
-            System.out.println(a.toString());
+            System.out.println(w + "   " + a.toString());
+        }
+    }
+
+    public void lookRight(int x, int y, int len, String w){
+      ArrayList<Character> temp = new ArrayList<>();
+      String wordTemp = "";
+
+      for (int i = y; i < 15; i++){
+        temp.add(board[x][i]);
+      }
+
+      for (int i = 0; i < len; i++){
+        wordTemp += temp.get(i);
+      }
+
+      if (wordTemp.equals(w)){
+        Coord a = new Coord(x, y, x, y + len + 1);
+        System.out.println(w + "    " + a.toString());
+      }
+    }
+
+    public void lookDown(int x, int y, int len, String w){
+        ArrayList<Character> temp = new ArrayList<>();
+        String wordTemp = "";
+
+        for (int i = x; i < 15; i++){
+            temp.add(board[i][y]);
         }
 
+        for (int i = 0; i < len; i++){
+            wordTemp += temp.get(i);
+        }
 
+        if (wordTemp.equals(w)){
+            Coord a = new Coord(x, y, x + len + 1, y);
+            System.out.println(w + "     " + a.toString());
+        }
     }
+
+    public void lookLeft(int x, int y, int len, String w){
+        ArrayList<Character> temp = new ArrayList<>();
+        String wordTemp = "";
+
+        for (int i = y; i >= 0; i--){
+            temp.add(board[x][i]);
+        }
+
+        for (int i = 0; i < len; i++){
+            wordTemp += temp.get(i);
+        }
+
+        if (wordTemp.equals(w)){
+            Coord a = new Coord(x, y, x, y - len + 1);
+            System.out.println(w + "    " + a.toString());
+        }
+    }
+    
 }

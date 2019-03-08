@@ -23,7 +23,7 @@ public class Coord {
     String xE = Integer.toString(this.xEnd);
     String yE = Integer.toString(this.yEnd);
 
-    return ("[" + xS + " ," + yS + "]" + "=> [" + xE + " ," + yE + "]");
+    return ("Start [" + xS + ", " + yS + "]" + " => End [" + xE + " ," + yE + "]");
 
   }
 }
