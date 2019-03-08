@@ -5,5 +5,7 @@ public class Runner {
         a.init();
         a.format();
         a.printBoard();
+        a.findWords();
+        
     }
 }

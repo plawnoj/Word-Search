@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class WordSearch {
 
-    public ArrayList<String> boardTemp = new ArrayList<>();
-    public ArrayList<Character> boardCharTemp = new ArrayList<>();
-    public char[][] board = new char[15][15];
+    public ArrayList<String> boardTemp = new ArrayList<>(); // to put text file into
+    public ArrayList<Character> boardCharTemp = new ArrayList<>(); //separate string into chars
+    public char[][] board = new char[15][15]; //actual board
     public ArrayList<String> wordList = new ArrayList<>();
     public ArrayList<Character> firstLetters = new ArrayList<>();
 
     public void init(){
         try {
-            File f = new File("C:\\Users\\jwalp\\workspace\\wordS\\src\\WORDSEARCH.txt");
+            File f = new File("C:\\Users\\jwalp\\IdeaProjects\\Word\\src\\WORDSEARCH.txt");
             Scanner fileRead = new Scanner(f);
             int count = 0;
             while (count <= 15){
@@ -76,4 +76,45 @@ public class WordSearch {
     }
 
 
+    public void findWords(){
+
+      for (String word : wordList){
+        char firstLetter = word.charAt(0);
+        for (int i = 0; i < 15; i++){
+          for (int j = 0; j < 15; j++){
+            if (board[i][j] == firstLetter){
+//              String x = Integer.toString(i);
+//              String y = Integer.toString(j);
+//              System.out.println(word + " Letter Found: " + x + ", " + y);
+//              continue;
+                if (checkUp(i, j, word.length())){
+                    lookUp(i, j, word.length());
+                }
+            }
+          }
+        }
+      }
+    }
+    //checking up
+    public boolean checkUp(int x, int y, int len){
+        boolean possible = false;
+        if (x - len >= 0){
+            possible = true;
+        }
+        else {
+            possible = false;
+        }
+
+        return possible;
+    }
+
+    public void lookUp(int x, int y, int len){
+        char[] temp = new char[len];
+        int count = 0;
+        for (int i = x; i >= 0; i--){
+            temp[count] = board[i][y];
+            count++;
+        }
+        System.out.println(temp);
+    }
 }
