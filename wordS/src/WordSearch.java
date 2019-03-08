@@ -9,11 +9,10 @@ public class WordSearch {
     public ArrayList<Character> boardCharTemp = new ArrayList<>(); //separate string into chars
     public char[][] board = new char[15][15]; //actual board
     public ArrayList<String> wordList = new ArrayList<>();
-    public ArrayList<Character> firstLetters = new ArrayList<>();
 
     public void init(){
         try {
-            File f = new File("C:\\Users\\jwalp\\IdeaProjects\\Word\\src\\WORDSEARCH.txt");
+            File f = new File("C:\\Users\\jwalp\\IdeaProjects\\untitled6\\src\\WORDSEARCH.txt");
             Scanner fileRead = new Scanner(f);
             int count = 0;
             while (count <= 15){
@@ -53,9 +52,6 @@ public class WordSearch {
         }
         wordList.remove(0);
 
-        for (int i = 0; i < wordList.size(); i++){
-            firstLetters.add(wordList.get(i).charAt(0));
-        }
     }
 
 
@@ -72,28 +68,27 @@ public class WordSearch {
         }
 
         System.out.println(wordList);
-        System.out.println(firstLetters);
     }
 
 
     public void findWords(){
-
-      for (String word : wordList){
+        String word = wordList.get(0);
+        //for (String word : wordList){
         char firstLetter = word.charAt(0);
         for (int i = 0; i < 15; i++){
-          for (int j = 0; j < 15; j++){
-            if (board[i][j] == firstLetter){
+            for (int j = 0; j < 15; j++){
+                if (board[i][j] == firstLetter){
 //              String x = Integer.toString(i);
 //              String y = Integer.toString(j);
 //              System.out.println(word + " Letter Found: " + x + ", " + y);
 //              continue;
-                if (checkUp(i, j, word.length())){
-                    lookUp(i, j, word.length());
+                    if (checkUp(i, j, word.length())){
+                        lookUp(i, j, word.length(), word);
+                    }
                 }
             }
-          }
         }
-      }
+        //}
     }
     //checking up
     public boolean checkUp(int x, int y, int len){
@@ -108,13 +103,25 @@ public class WordSearch {
         return possible;
     }
 
-    public void lookUp(int x, int y, int len){
-        char[] temp = new char[len];
-        int count = 0;
+    public void lookUp(int x, int y, int len, String w){
+        ArrayList<Character> temp = new ArrayList<>();
+        String wordTemp = "";
+        w = "ALBUSLA";
         for (int i = x; i >= 0; i--){
-            temp[count] = board[i][y];
-            count++;
+            temp.add(board[i][y]);
+        }
+
+        for (int i = 0; i < len; i++){
+            wordTemp += temp.get(i);
         }
         System.out.println(temp);
+        System.out.println(wordTemp);
+
+        if (wordTemp.equals(w)){
+            Coord a = new Coord(x, y, x-len + 1, y);
+            System.out.println(a.toString());
+        }
+
+
     }
 }
