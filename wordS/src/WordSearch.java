@@ -58,6 +58,7 @@ public class WordSearch {
             }
         }
 
+        //Adds chars into final board
         int count = 0;
         while (count < boardCharTemp.size()){
             for (int i = 0; i < 15; i++){
@@ -67,11 +68,13 @@ public class WordSearch {
                 }
             }
         }
+
+        //removes the possible words line
         wordList.remove(0);
 
     }
 
-
+    //Testing method that just prints out all boards and arrays
     public void printBoard(){
         System.out.println(boardTemp);
         System.out.println(boardCharTemp);
@@ -87,13 +90,19 @@ public class WordSearch {
         System.out.println(wordList);
     }
 
-
+    /*
+    * findWords()
+    * driving method for finding WordS
+    * combines boolean methods to improve efficincy
+    */
     public void findWords(){
         for (String word : wordList){
-            char firstLetter = word.charAt(0);
+          //for each word in wordList
+            char firstLetter = word.charAt(0); //get the first letter of that word
             for (int i = 0; i < 15; i++){
                 for (int j = 0; j < 15; j++){
-                    if (board[i][j] == firstLetter){
+                    if (board[i][j] == firstLetter){ //if that letter is found
+                      //checking the distances in all four directions to see if it should bother checking
                         if (checkUp(i, j, word.length())){
                             lookUp(i, j, word.length(), word);
                         }
@@ -114,6 +123,10 @@ public class WordSearch {
         }
     }
     //checking up
+    /*
+    * All check methods just look at the length of
+    * current word and see if its possible to go in that direction
+    */
     public boolean checkUp(int x, int y, int len){
         boolean possible = false;
         if (x - len >= 0){
@@ -160,7 +173,15 @@ public class WordSearch {
     }
 
 
-
+    /*
+    * look() methods
+    * if the check direction methods come back true
+    * it will run the corrisponding look methods
+    * @param x and y corrdinates of letter Found
+    * @param length of current word
+    * @param current word
+    * if the word is found it will create a Coord for the start and end positions of current word
+    */
 
     public void lookUp(int x, int y, int len, String w){
         ArrayList<Character> temp = new ArrayList<>();
