@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 // @Author Jon C. Walp
 // 2019 AP-CS
+// WordSearch Class
 
 public class WordSearch {
 
@@ -189,13 +190,9 @@ public class WordSearch {
         for (int i = x; i >= 0; i--){
             temp.add(board[i][y]);
         }
-
         for (int i = 0; i < len; i++){
             wordTemp += temp.get(i);
         }
-//        System.out.println(temp);
-//        System.out.println(wordTemp);
-
         if (wordTemp.equals(w)){
             Coord a = new Coord(x, y, x-len + 1, y);
             System.out.println(w + "   " + a.toString());
@@ -209,11 +206,9 @@ public class WordSearch {
         for (int i = y; i < 15; i++){
             temp.add(board[x][i]);
         }
-
         for (int i = 0; i < len; i++){
             wordTemp += temp.get(i);
         }
-
         if (wordTemp.equals(w)){
             Coord a = new Coord(x, y, x, y + len + 1);
             System.out.println(w + "    " + a.toString());
@@ -227,11 +222,9 @@ public class WordSearch {
         for (int i = x; i < 15; i++){
             temp.add(board[i][y]);
         }
-
         for (int i = 0; i < len; i++){
             wordTemp += temp.get(i);
         }
-
         if (wordTemp.equals(w)){
             Coord a = new Coord(x, y, x + len + 1, y);
             System.out.println(w + "     " + a.toString());
@@ -245,11 +238,9 @@ public class WordSearch {
         for (int i = y; i >= 0; i--){
             temp.add(board[x][i]);
         }
-
         for (int i = 0; i < len; i++){
             wordTemp += temp.get(i);
         }
-
         if (wordTemp.equals(w)){
             Coord a = new Coord(x, y, x, y - len + 1);
             System.out.println(w + "    " + a.toString());

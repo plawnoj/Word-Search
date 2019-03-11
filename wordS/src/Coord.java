@@ -1,6 +1,8 @@
 public class Coord {
 
   /*
+  * @Author Jon C. Walp
+  * AP-CS 2019
   * Class to store coordinates of words found in word WordSearch
   * Stores start X and Y and end X and Y
   */
