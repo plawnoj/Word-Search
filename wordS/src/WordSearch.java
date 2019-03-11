@@ -4,13 +4,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+// @Author Jon C. Walp
+// 2019 AP-CS
+
 public class WordSearch {
 
     public ArrayList<String> boardTemp = new ArrayList<>(); // to put text file into
     public ArrayList<Character> boardCharTemp = new ArrayList<>(); //separate string into chars
     public char[][] board = new char[15][15]; //actual board
-    public ArrayList<String> wordList = new ArrayList<>();
+    public ArrayList<String> wordList = new ArrayList<>(); //To hold word list from text file
 
+    /*
+    * init()
+    * Finds text file containing the WordSearch
+    * Catches the FileNotFoundException
+    * Adds everything from text file into respective arrays
+    */
     public void init(){
         try {
             File f = new File("C:\\Users\\Jon\\IdeaProjects\\WordS\\src\\WORDSEARCH.txt");
@@ -29,13 +38,20 @@ public class WordSearch {
         }
     }
 
+
+    /*
+    * format()
+    * The text coming from file is formatted weird so I formatted it to fit specs
+    */
     public void format(){
+      //first for loop is to just add board into a temp ArrayList
         for (int i = 0; i < boardTemp.size(); i++){
             for (int j = 0; j < boardTemp.get(i).length(); j++){
                 boardCharTemp.add(boardTemp.get(i).charAt(j));
             }
         }
 
+        //next for loop is for removing spaces between chars
         for (int i = 0; i < boardCharTemp.size(); i++){
             if (boardCharTemp.get(i).equals(' ')){
                 boardCharTemp.remove(i);
